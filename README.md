@@ -1,54 +1,21 @@
-# React + TypeScript + Vite
+# Figma Plugin Modern Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ディレクトリ構成
 
-Currently, two official plugins are available:
+- `src/app/` ... React UI（Vite+singlefileで1ファイル化）
+- `src/plugin/` ... Figma Plugin本体（controller.ts, esbuildで最速ビルド）
+- `public/` ... 静的アセット
+- `dist/` ... ビルド成果物（ui.html, code.js）
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 開発コマンド
 
-## Expanding the ESLint configuration
+- `pnpm build` ... 本番ビルド（UI+controller）
+- `pnpm watch` ... UI/controller両方を自動監視
+- `pnpm typecheck` ... 型チェックのみ
+- `pnpm format` ... Prettierでコード整形
+- `pnpm lint:fix` ... ESLint自動修正
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## その他
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- manifest.jsonは手動管理。自動化したい場合はご相談ください。
+- UI単体テスト用のpublic/index.htmlを用意してもOK。

@@ -17,10 +17,10 @@ export default defineConfig({
                     return "[name].js";
                 },
                 assetFileNames: "[name][extname]",
-                // tree shaking有効化
-                manualChunks: undefined,
+                manualChunks: undefined, // tree shaking有効化
             },
             treeshake: true,
         },
+        cssCodeSplit: false, // CSSもインライン化
     },
 });

@@ -12,7 +12,10 @@
         "watch:code": "esbuild src/plugin/controller.ts --bundle --platform=node --outfile=dist/code.js --format=cjs --target=esnext --watch",
         "watch": "concurrently -k \"pnpm watch:ui\" \"pnpm watch:code\"",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "typecheck": "tsc --noEmit",
+        "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+        "lint:fix": "eslint . --fix"
     },
     "dependencies": {
         "react": "^19.1.0",
