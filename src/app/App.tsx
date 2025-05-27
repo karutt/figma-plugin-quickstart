@@ -1,5 +1,5 @@
+import { Button, Center, Heading, Image, NumberInput } from '@chakra-ui/react';
 import React from 'react';
-
 import logo from '../assets/logo.svg';
 
 function App() {
@@ -30,17 +30,22 @@ function App() {
     }, []);
 
     return (
-        <div>
-            <img src={logo} alt="Figma Plugin Logo" />
-            <h2>Rectangle Creator!!!!</h2>
-            <p>
-                Count: <input ref={countRef} />
-            </p>
-            <button id="create" onClick={onCreate}>
-                Create
-            </button>
-            <button onClick={onCancel}>Cancel</button>
-        </div>
+        <Center flexDir="column" height="100vh" gap="4">
+            <Center gap={2}>
+                <Image src={logo} alt="Figma Plugin Logo" />
+                <Heading>Rectangle Creator!</Heading>
+            </Center>
+            <NumberInput.Root defaultValue="10" width="100px">
+                <NumberInput.Control />
+                <NumberInput.Input ref={countRef} />
+            </NumberInput.Root>
+            <Center gap={4}>
+                <Button id="create" onClick={onCreate} bg="blue.solid" color="white">
+                    Create
+                </Button>
+                <Button onClick={onCancel}>Cancel</Button>
+            </Center>
+        </Center>
     );
 }
 
