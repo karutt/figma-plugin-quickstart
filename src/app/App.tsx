@@ -1,18 +1,15 @@
-import { Button, Center, Heading, Image, NumberInput } from '@chakra-ui/react';
+import { Button, Center, Heading, NumberInput } from '@chakra-ui/react';
 import React from 'react';
-import logo from '../assets/logo.svg';
+import { HiHeart } from 'react-icons/hi';
 
 function App() {
-    const textbox = React.useRef<HTMLInputElement>(undefined);
-
-    const countRef = React.useCallback((element: HTMLInputElement) => {
-        if (element) element.value = '5';
-        textbox.current = element;
-    }, []);
+    const [count, setCount] = React.useState<string>('5');
 
     const onCreate = () => {
-        const count = textbox.current ? parseInt(textbox.current.value, 10) : 0;
-        parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*');
+        parent.postMessage(
+            { pluginMessage: { type: 'create-rectangles', count: parseInt(count, 10) } },
+            '*',
+        );
     };
 
     const onCancel = () => {
@@ -32,12 +29,16 @@ function App() {
     return (
         <Center flexDir="column" gap="4" h="100vh">
             <Center gap={2}>
-                <Image alt="Figma Plugin Logo" src={logo} />
-                <Heading>Rectangle Creator!</Heading>
+                <HiHeart />
+                <Heading>Rectangle Creater</Heading>
             </Center>
-            <NumberInput.Root defaultValue="10" width="100px">
+            <NumberInput.Root
+                width={100}
+                value={count}
+                onValueChange={({ value }) => setCount(value)}
+            >
                 <NumberInput.Control />
-                <NumberInput.Input ref={countRef} />
+                <NumberInput.Input />
             </NumberInput.Root>
             <Center gap={4}>
                 <Button color="white" bg="blue.solid" id="create" onClick={onCreate}>
