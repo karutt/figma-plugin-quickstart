@@ -1,5 +1,5 @@
 {
-    "name": "My Figma Plugin",
+    "name": "Figma Plugin Quickstart",
     "id": "4255163407468189952",
     "api": "1.0.0",
     "main": "dist/code.js",
