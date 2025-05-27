@@ -30,9 +30,9 @@ function App() {
     }, []);
 
     return (
-        <Center flexDir="column" height="100vh" gap="4">
+        <Center flexDir="column" gap="4" h="100vh">
             <Center gap={2}>
-                <Image src={logo} alt="Figma Plugin Logo" />
+                <Image alt="Figma Plugin Logo" src={logo} />
                 <Heading>Rectangle Creator!</Heading>
             </Center>
             <NumberInput.Root defaultValue="10" width="100px">
@@ -40,7 +40,7 @@ function App() {
                 <NumberInput.Input ref={countRef} />
             </NumberInput.Root>
             <Center gap={4}>
-                <Button id="create" onClick={onCreate} bg="blue.solid" color="white">
+                <Button color="white" bg="blue.solid" id="create" onClick={onCreate}>
                     Create
                 </Button>
                 <Button onClick={onCancel}>Cancel</Button>
