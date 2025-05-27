@@ -16,7 +16,7 @@
         "typecheck": "tsc --noEmit",
         "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
         "lint:fix": "eslint . --fix",
-        "generate:id": "node manifest-id-gen.cjs"
+        "generate:id": "node manifest-id-gen.cjs && prettier --write manifest.json"
     },
     "dependencies": {
         "react": "^19.1.0",
