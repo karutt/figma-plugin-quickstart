@@ -1,0 +1,38 @@
+{
+    "name": "my-figma-plugin",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build:ui": "vite build --config vite.ui.config.ts",
+        "build:code": "esbuild src/plugin/controller.ts --bundle --platform=node --outfile=dist/code.js --format=cjs --target=esnext",
+        "build": "pnpm build:ui && pnpm build:code",
+        "watch:ui": "vite build --watch --config vite.ui.config.ts",
+        "watch:code": "esbuild src/plugin/controller.ts --bundle --platform=node --outfile=dist/code.js --format=cjs --target=esnext --watch",
+        "watch": "concurrently -k \"pnpm watch:ui\" \"pnpm watch:code\"",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.25.0",
+        "@figma/plugin-typings": "^1.113.0",
+        "@types/node": "^22.15.21",
+        "@types/react": "^19.1.2",
+        "@types/react-dom": "^19.1.2",
+        "@vitejs/plugin-react": "^4.4.1",
+        "concurrently": "^9.1.2",
+        "eslint": "^9.25.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.19",
+        "globals": "^16.0.0",
+        "typescript": "~5.8.3",
+        "typescript-eslint": "^8.30.1",
+        "vite": "^5.4.19",
+        "vite-plugin-singlefile": "^2.2.0"
+    }
+}
