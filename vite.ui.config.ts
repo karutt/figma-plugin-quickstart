@@ -8,6 +8,7 @@ export default defineConfig({
     build: {
         outDir: "dist",
         emptyOutDir: false, // 上書き出力にする
+        minify: true, // 本番用に圧縮
         rollupOptions: {
             input: resolve(__dirname, "index.html"),
             output: {
@@ -16,8 +17,10 @@ export default defineConfig({
                     return "[name].js";
                 },
                 assetFileNames: "[name][extname]",
+                // tree shaking有効化
+                manualChunks: undefined,
             },
+            treeshake: true,
         },
-        minify: false,
     },
 });
