@@ -1,5 +1,3 @@
-/* darkmodeではbodyの背景は黒 */
-
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #222;

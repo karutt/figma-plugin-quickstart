@@ -7,17 +7,19 @@ function App() {
 
     const onCreate = () => {
         parent.postMessage(
-            { pluginMessage: { type: 'create-rectangles', count: parseInt(count, 10) } },
+            {
+                pluginMessage: { type: 'create-rectangles', count: parseInt(count, 10) },
+                pluginId: '*',
+            },
             '*',
         );
     };
 
     const onCancel = () => {
-        parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+        parent.postMessage({ pluginMessage: { type: 'cancel' }, pluginId: '*' }, '*');
     };
 
     React.useEffect(() => {
-        // This is how we read messages sent from the plugin controller
         window.onmessage = event => {
             const { type, message } = event.data.pluginMessage;
             if (type === 'create-rectangles') {
@@ -30,7 +32,7 @@ function App() {
         <Center flexDir="column" gap="4" h="100vh">
             <Center gap={2}>
                 <HiHeart />
-                <Heading>Rectangle Creater</Heading>
+                <Heading>Rectangle Creator</Heading>
             </Center>
             <NumberInput.Root
                 width={100}

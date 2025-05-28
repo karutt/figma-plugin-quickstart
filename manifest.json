@@ -9,6 +9,7 @@
     "documentAccess": "dynamic-page",
     "editorType": ["figma", "figjam", "slides"],
     "networkAccess": {
-        "allowedDomains": ["none"]
+        "allowedDomains": ["none"],
+        "devAllowedDomains": ["http://localhost:5173"]
     }
 }
