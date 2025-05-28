@@ -8,8 +8,8 @@ export default defineConfig({
     plugins: [react(), viteSingleFile(), tsconfigPaths()],
     build: {
         outDir: 'dist',
-        emptyOutDir: false, // 上書き出力にする
-        minify: true, // 本番用に圧縮
+        emptyOutDir: false,
+        minify: true,
         rollupOptions: {
             input: resolve(__dirname, 'index.html'),
             output: {
@@ -18,10 +18,10 @@ export default defineConfig({
                     return '[name].js';
                 },
                 assetFileNames: '[name][extname]',
-                manualChunks: undefined, // tree shaking有効化
+                manualChunks: undefined,
             },
             treeshake: true,
         },
-        cssCodeSplit: false, // CSSもインライン化
+        cssCodeSplit: false,
     },
 });

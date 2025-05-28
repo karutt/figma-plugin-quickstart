@@ -19,11 +19,9 @@ export default defineConfig({
                 entryFileNames: '[name].js',
                 chunkFileNames: '[name].[hash].js',
                 assetFileNames: '[name].[ext]',
-                // ルート直下にHTMLを出力
                 dir: 'dist',
             },
         },
-        // Figma plugin controllerはNode API不要なのでtargetはesnext
         target: ['esnext'],
         minify: false,
     },

@@ -1,15 +1,12 @@
-// __DEV__が未定義の場合はfalseとして扱う（esbuildのdefineで上書きされる想定）
 declare const __DEV__: boolean;
-const DEV = typeof __DEV__ !== 'undefined' ? __DEV__ : false;
 
-if (DEV) {
+if (__DEV__) {
     figma.showUI(`<script>window.location.href = "http://localhost:5173";</script>`);
 } else {
     figma.showUI(__html__);
 }
 
 figma.ui.onmessage = msg => {
-    console.log('Received message from UI:', msg);
     if (msg.type === 'create-rectangles') {
         const nodes = [];
 
