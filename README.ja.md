@@ -81,6 +81,12 @@ Chakra UIのprops自動整列や保存時の自動修正を快適にするため
 
 > コマンドパレット（Cmd + Shift + P）で「Preferences: Open User Settings (JSON)」を開き、上記を追記してください。
 
+## ♻️ ホットリロード
+
+Figma には、プラグインのホットリロード機能があります。これを有効にすると、コードを編集してビルドするたびに、プラグインが自動的に再起動し、最新の変更が即座に反映されます。ホットリロードをオフにしている場合は、手動でプラグインを再起動する必要があります。
+
+![Hot Reloading](https://static.figma.com/uploads/d8cf8d1e1f383f26fa6c800a33dbcfdaf201a807)
+
 ## 📝 manifest.json について
 
 `manifest.json` は、Figma プラグインの動作や表示場所を定義する設定ファイルです。必須項目の例と、各フィールドの簡単な説明を下記にまとめます。

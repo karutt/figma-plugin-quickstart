@@ -78,6 +78,12 @@ To make working with Chakra UI and ESLint more comfortable, add the following to
 
 > Open the command palette (`Cmd + Shift + P`), select "Preferences: Open User Settings (JSON)", and add the above.
 
+## ♻️ Hot Reloading
+
+Figma provides the option to hot reload your plugin, making development even faster. When enabled, your plugin will automatically restart with the latest changes each time you edit the code and rebuild. If hot reloading is turned off, you will need to manually restart the plugin to see updates.
+
+![Hot Reloading](https://static.figma.com/uploads/d8cf8d1e1f383f26fa6c800a33dbcfdaf201a807)
+
 ## 📝 About manifest.json
 
 `manifest.json` defines how your Figma plugin works and where it appears. Below is an example with key fields explained.
