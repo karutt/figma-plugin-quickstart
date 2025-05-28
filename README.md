@@ -12,7 +12,10 @@ This repository is a starter template for developing Figma plugins using React a
     ```
 2. **Start the development server**
     ```sh
-    pnpm dev
+    # First time only: build is required so that dist/index.html exists for manifest.json
+    pnpm build && pnpm dev
+    # On subsequent runs, just use:
+    # pnpm dev
     ```
     - The Vite local server (e.g., http://localhost:5173) will start.
     - Use this URL as the Figma plugin UI for instant reload during development.

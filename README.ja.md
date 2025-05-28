@@ -12,7 +12,10 @@
     ```
 2. **開発サーバーを起動**
     ```sh
-    pnpm dev
+    # 初回のみ: dist/index.htmlが必要なのでビルドも実行
+    pnpm build && pnpm dev
+    # 2回目以降は通常通り
+    # pnpm dev
     ```
     - Vite のローカルサーバー（例: http://localhost:5173）が起動します。
     - この URL を Figma のプラグイン UI として利用することで、即時リロードで開発できます。
