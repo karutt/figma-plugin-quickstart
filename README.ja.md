@@ -4,19 +4,33 @@ React と Vite を使った Figma プラグイン開発のための、堅牢で�
 
 ## クイックスタート
 
+### 開発モード（推奨）
+
 1. 依存パッケージのインストール:
     ```sh
     pnpm install
     ```
-2. 開発モードで自動ビルド:
+2. 開発サーバーを起動:
     ```sh
-    pnpm watch
+    pnpm dev
     ```
-3. Figma で `Plugins` → `Development` → `Import plugin from manifest...` を開き、このプロジェクトの `manifest.json` を選択します。
+    - Vite のローカルサーバー（例: http://localhost:5173）が起動します。
+    - この URL を Figma のプラグイン UI として利用することで、即時リロードで開発できます。
+3. Figma で「Plugins」→「Development」→「Import plugin from manifest...」を選択し、このプロジェクトの `manifest.json` を選択します。
 
-- ✨ プラグインのUIを編集するには [`App.tsx`](./src/app/components/App.tsx) を編集してください。
-- 🛠️ Figma APIとの連携は [`controller.ts`](./src/plugin/controller.ts) を編集してください。
-- 📚 詳細は [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/) を参照してください。
+### 本番ビルド
+
+1. 本番用ビルドを作成:
+    ```sh
+    pnpm build
+    ```
+    - `dist/` フォルダに `index.html`（UI）と `code.js`（プラグインロジック）が生成されます。
+2. `manifest.json` の `ui` フィールドを `dist/index.html` に戻します。
+3. Figma でプラグインを再インポートすると、本番ビルドの UI が利用されます。
+
+- ✨ プラグイン UI の編集は [`App.tsx`](./src/app/components/App.tsx)
+- 🛠️ Figma API との連携は [`controller.ts`](./src/plugin/controller.ts)
+- 📚 詳細は [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/) を参照してください
 
 ## ツール類
 

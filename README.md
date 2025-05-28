@@ -4,15 +4,29 @@ A robust and modern starting point for building Figma plugins with React and Vit
 
 ## Quickstart
 
+### Development Mode (Recommended)
+
 1. Install dependencies:
     ```sh
     pnpm install
     ```
-2. Start development mode (auto-rebuilds on changes):
+2. Start the development server:
     ```sh
-    pnpm watch
+    pnpm dev
     ```
-3. In Figma, open `Plugins` → `Development` → `Import plugin from manifest...` and select the `manifest.json` file from this project.
+    - This launches a Vite local server (e.g., http://localhost:5173).
+    - You can use this URL as the plugin UI in Figma for instant hot-reload development.
+3. In Figma, go to `Plugins` → `Development` → `Import plugin from manifest...` and select this project's `manifest.json`.
+
+### Production Build
+
+1. Build for production:
+    ```sh
+    pnpm build
+    ```
+    - This generates `index.html` (UI) and `code.js` (plugin logic) in the `dist/` folder.
+2. Change the `ui` field in `manifest.json` back to `dist/index.html`.
+3. Re-import the plugin in Figma to use the production build UI.
 
 - ✨ Edit your plugin UI in [`App.tsx`](./src/app/components/App.tsx)
 - 🛠️ Work with the Figma API in [`controller.ts`](./src/plugin/controller.ts)
