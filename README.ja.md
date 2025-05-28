@@ -1,38 +1,43 @@
 # Figma Plugin クイックスタート（React + Vite）
 
-React と Vite を使った Figma プラグイン開発のための、堅牢でモダンなスターターテンプレートです。高速な開発体験、UIとプラグインロジックの明確な分離、シングルファイルUIバンドルが特徴です。
+このリポジトリは、React + Vite を使った Figma プラグイン開発のためのスターターテンプレートです。高速な開発体験、UIとプラグインロジックの明確な分離、シングルファイルUIバンドルが特徴です。Figma プラグイン開発をこれから始める方にも、すぐに実践したい方にも最適です。
 
-## クイックスタート
+## 🚀 クイックスタート
 
 ### 開発モード（推奨）
 
-1. 依存パッケージのインストール:
+1. **依存パッケージのインストール**
     ```sh
     pnpm install
     ```
-2. 開発サーバーを起動:
+2. **開発サーバーを起動**
     ```sh
     pnpm dev
     ```
     - Vite のローカルサーバー（例: http://localhost:5173）が起動します。
     - この URL を Figma のプラグイン UI として利用することで、即時リロードで開発できます。
-3. Figma で「Plugins」→「Development」→「Import plugin from manifest...」を選択し、このプロジェクトの `manifest.json` を選択します。
+3. **Figma でプラグインを読み込む**
+    - `cmd + k` で「Import plugin from manifest...」を選択し、このプロジェクトの `manifest.json` を指定します。
+4. **プラグインを実行**
+    - `cmd + k` で「Figma Plugin Quickstart」を実行すると、開発サーバーの UI が表示されます。
+
+> 💡 **Tips:** 開発中はViteサーバーのURLを`manifest.json`の`ui`フィールドに設定しておくと、即時リロードが効きます。
 
 ### 本番ビルド
 
-1. 本番用ビルドを作成:
-    ```sh
-    pnpm build
-    ```
-    - `dist/` フォルダに `index.html`（UI）と `code.js`（プラグインロジック）が生成されます。
-2. `manifest.json` の `ui` フィールドを `dist/index.html` に戻します。
-3. Figma でプラグインを再インポートすると、本番ビルドの UI が利用されます。
+```sh
+pnpm build
+```
 
-- ✨ プラグイン UI の編集は [`App.tsx`](./src/app/components/App.tsx)
-- 🛠️ Figma API との連携は [`controller.ts`](./src/plugin/controller.ts)
-- 📚 詳細は [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/) を参照してください
+dist/`フォルダに`index.html`（UI）と `code.js`（プラグインロジック）が生成されます。
 
-## ツール類
+## 主な編集ファイル・リソース
+
+- ✨ **プラグイン UI の編集**: [`App.tsx`](./src/app/App.tsx)
+- 🛠️ **Figma API との連携**: [`controller.ts`](./src/plugin/controller.ts)
+- 📚 **詳細ドキュメント**: [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/)
+
+## 🛠️ ツール類
 
 - **React** + **Vite**: 高速なモダンUI開発
 - **TypeScript**: 型安全な開発
@@ -40,21 +45,43 @@ React と Vite を使った Figma プラグイン開発のための、堅牢で�
 - **ESLint** & **Prettier**: コード品質と整形
 - **pnpm**: 高速で効率的なパッケージ管理
 
-## ディレクトリ構成
+## 📁 ディレクトリ構成
 
 - `src/app/` – React UI（シングルファイルにバンドル）
 - `src/plugin/` – Figma プラグインコントローラ（TypeScript）
-- `dist/` – ビルド成果物（`ui.html`, `code.js`）
+- `dist/` – ビルド成果物（`index.html`, `code.js`）
 
-## よく使うコマンド
+## 🔖 よく使うコマンド
 
 - `pnpm build` – 本番ビルド（UI + controller）
-- `pnpm watch` – UI/controller両方の自動監視
-- `pnpm typecheck` – 型チェックのみ
+- `pnpm dev` – 開発サーバー起動
 - `pnpm format` – Prettierでコード整形
 - `pnpm lint:fix` – ESLint自動修正
 
-## manifest.json について
+## 💡 VS Code 推奨設定（任意）
+
+Chakra UIのprops自動整列や保存時の自動修正を快適にするため、VS Codeのユーザー設定（settings.json）に以下を追加しておくと便利です。
+
+```json
+"eslint.rules.customizations": [
+    { "rule": "chakra-ui/props-order", "severity": "off" }
+],
+"editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+},
+"eslint.useFlatConfig": true,
+```
+
+- `eslint.rules.customizations`  
+  Chakra UIのprops順序違反をエラーにしない（自動整列で十分なため）。
+- `editor.codeActionsOnSave`  
+  保存時にESLintの自動修正を明示的に実行。
+- `eslint.useFlatConfig`  
+  FlatConfig（新しいESLint設定方式）を有効化。
+
+> コマンドパレット（Cmd + Shift + P）で「Preferences: Open User Settings (JSON)」を開き、上記を追記してください。
+
+## 📝 manifest.json について
 
 `manifest.json` は、Figma プラグインの動作や表示場所を定義する設定ファイルです。必須項目の例と、各フィールドの簡単な説明を下記にまとめます。
 
@@ -70,7 +97,8 @@ React と Vite を使った Figma プラグイン開発のための、堅牢で�
     "documentAccess": "dynamic-page",
     "editorType": ["figma", "figjam", "slides"],
     "networkAccess": {
-        "allowedDomains": ["none"]
+        "allowedDomains": ["none"],
+        "devAllowedDomains": ["http://localhost:5173"]
     }
 }
 ```
@@ -88,4 +116,8 @@ React と Vite を使った Figma プラグイン開発のための、堅牢で�
 - **editorType**: プラグインが対応するFigmaエディタ（`figma`, `figjam`, `dev`, `slides`）
 - **networkAccess**: プラグインがアクセス可能なドメインのリスト
     - `allowedDomains`: 通信許可ドメイン（例: `["none"]` で全ブロック、`["*"]` で全許可、特定ドメイン指定も可）
-    - 未許可ドメインへの通信はFigma側でブロックされます
+    - `devAllowedDomains`: 開発中のローカルサーバーなど、開発時に許可するドメイン
+
+## 📣 コントリビュート・質問
+
+バグ報告・機能要望・質問はIssueまたはPRで歓迎します！

@@ -1,62 +1,86 @@
-# Figma Plugin Quickstart with React and Vite
+# Figma Plugin Quickstart (React + Vite)
 
-A robust and modern starting point for building Figma plugins with React and Vite. This template is designed for fast iteration, easy customization, and a clear separation between UI and plugin logic.
+This repository is a starter template for developing Figma plugins using React and Vite. It features a fast development experience, clear separation of UI and plugin logic, and single-file UI bundling. Perfect for both beginners and those who want to get started quickly with Figma plugin development.
 
-## Quickstart
+## 🚀 Quickstart
 
 ### Development Mode (Recommended)
 
-1. Install dependencies:
+1. **Install dependencies**
     ```sh
     pnpm install
     ```
-2. Start the development server:
+2. **Start the development server**
     ```sh
     pnpm dev
     ```
-    - This launches a Vite local server (e.g., http://localhost:5173).
-    - You can use this URL as the plugin UI in Figma for instant hot-reload development.
-3. In Figma, go to `Plugins` → `Development` → `Import plugin from manifest...` and select this project's `manifest.json`.
+    - The Vite local server (e.g., http://localhost:5173) will start.
+    - Use this URL as the Figma plugin UI for instant reload during development.
+3. **Load the plugin in Figma**
+    - Press `cmd + k` and select "Import plugin from manifest...", then choose this project's `manifest.json`.
+4. **Run the plugin**
+    - Press `cmd + k` and run "Figma Plugin Quickstart" to see the development server UI in Figma.
+
+> 💡 **Tips:** During development, set the Vite server URL in the `ui` field of `manifest.json` for instant reload.
 
 ### Production Build
 
-1. Build for production:
-    ```sh
-    pnpm build
-    ```
-    - This generates `index.html` (UI) and `code.js` (plugin logic) in the `dist/` folder.
-2. Change the `ui` field in `manifest.json` back to `dist/index.html`.
-3. Re-import the plugin in Figma to use the production build UI.
+```sh
+pnpm build
+```
 
-- ✨ Edit your plugin UI in [`App.tsx`](./src/app/components/App.tsx)
-- 🛠️ Work with the Figma API in [`controller.ts`](./src/plugin/controller.ts)
-- 📚 See the [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/) for more details
+The `dist/` folder will contain `index.html` (UI) and `code.js` (plugin logic).
 
-## Tooling Highlights
+## Main Files & Resources
 
-- **React** + **Vite** for a lightning-fast, modern development experience
-- **TypeScript** for type safety
-- **vite-plugin-singlefile** for compact UI bundles
-- **ESLint** & **Prettier** for code quality and consistency
-- **pnpm** for efficient package management
+- ✨ **Edit Plugin UI**: [`App.tsx`](./src/app/App.tsx)
+- 🛠️ **Figma API Integration**: [`controller.ts`](./src/plugin/controller.ts)
+- 📚 **Official Docs**: [Figma API Overview](https://www.figma.com/plugin-docs/api/api-overview/)
 
-## Project Structure
+## 🛠️ Tools
 
-- `src/app/` – React UI (bundled into a single file)
+- **React** + **Vite**: Modern, fast UI development
+- **TypeScript**: Type-safe development
+- **vite-plugin-singlefile**: Bundle UI into a single HTML file
+- **ESLint** & **Prettier**: Code quality and formatting
+- **pnpm**: Fast and efficient package management
+
+## 📁 Directory Structure
+
+- `src/app/` – React UI (bundled as a single file)
 - `src/plugin/` – Figma plugin controller (TypeScript)
-- `dist/` – Build output (`ui.html`, `code.js`)
+- `dist/` – Build outputs (`index.html`, `code.js`)
 
-## Useful Commands
+## 🔖 Common Commands
 
 - `pnpm build` – Production build (UI + controller)
-- `pnpm watch` – Watch mode for both UI and controller
-- `pnpm typecheck` – Type checking only
+- `pnpm dev` – Start development server
 - `pnpm format` – Format code with Prettier
-- `pnpm lint:fix` – Auto-fix lint issues with ESLint
+- `pnpm lint:fix` – Auto-fix with ESLint
 
-## About `manifest.json`
+## 💡 Recommended VS Code Settings (Optional)
 
-The `manifest.json` file defines how your Figma plugin behaves and where it appears in Figma. It's required for every plugin project. Below is a simple example and a brief explanation of each field:
+To make working with Chakra UI and ESLint more comfortable, add the following to your VS Code `settings.json`:
+
+```jsonc
+"eslint.rules.customizations": [
+    { "rule": "chakra-ui/props-order", "severity": "off" }
+],
+"editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+},
+"eslint.useFlatConfig": true,
+```
+
+- `eslint.rules.customizations`: Disables errors for Chakra UI prop order (auto-sorting is sufficient).
+- `editor.codeActionsOnSave`: Explicitly runs ESLint auto-fix on save.
+- `eslint.useFlatConfig`: Enables the new ESLint FlatConfig system.
+
+> Open the command palette (`Cmd + Shift + P`), select "Preferences: Open User Settings (JSON)", and add the above.
+
+## 📝 About manifest.json
+
+`manifest.json` defines how your Figma plugin works and where it appears. Below is an example with key fields explained.
 
 ```json
 {
@@ -70,31 +94,27 @@ The `manifest.json` file defines how your Figma plugin behaves and where it appe
     "documentAccess": "dynamic-page",
     "editorType": ["figma", "figjam", "slides"],
     "networkAccess": {
-        "allowedDomains": ["none"]
+        "allowedDomains": ["none"],
+        "devAllowedDomains": ["http://localhost:5173"]
     }
 }
 ```
 
 ### Key Fields
 
-- **name**: The display name of your plugin in Figma menus.
-- **id**: Unique plugin identifier, assigned when you create a new plugin. Used for publishing updates.
-- **api**: The Figma Plugin API version your plugin uses. Use the latest version if possible.
-- **main**: Path to your plugin's main JavaScript file (the logic). This runs in a sandboxed environment and can't access browser APIs directly.
-- **ui**: Path to your plugin's custom UI HTML file (shown in an iframe). This can use browser features and communicates with the main logic via messages.
-- **capabilities**: Special features your plugin uses. Examples:
-    - `textreview`: For plugins that check or suggest text edits.
-    - `codegen`: For plugins that generate code snippets (requires `editorType: dev`).
-    - `inspect`: For plugins that add panels to Dev Mode's Inspect view (requires `editorType: dev`).
-    - `vscode`: For plugins that run in Figma for VS Code.
-- **enableProposedApi**: Allows use of experimental Figma APIs (for development only, not for published plugins).
-- **documentAccess**: Controls how your plugin accesses Figma files. Use `"dynamic-page"` for best performance and access to large files. Some APIs require async loading for non-visible pages.
-- **editorType**: Specifies which Figma editors your plugin supports:
-    - `"figma"`: Figma Design
-    - `"figjam"`: FigJam (some APIs/features differ)
-    - `"dev"`: Dev Mode (read-only access)
-    - `"slides"`: Figma Slides (some APIs/features differ)
-        > Note: `"dev"` and `"figjam"` cannot be used together.
-- **networkAccess**: Controls which domains your plugin can access over the network.
-    - `allowedDomains`: List of allowed domains (e.g., `["none"]` to block all, `["*"]` to allow all, or specific domains). For development, use `devAllowedDomains` for local servers.
-    - Any network requests to domains not listed here will be blocked by Figma.
+- **name**: Plugin name shown in the Figma menu
+- **id**: Unique plugin ID (auto-assigned on creation, used for publishing)
+- **api**: Figma Plugin API version
+- **main**: Path to the plugin logic JavaScript file
+- **ui**: Path to the custom UI HTML file (shown in an iframe)
+- **capabilities**: Special plugin features (e.g., `textreview`, `codegen`, `inspect`, `vscode`)
+- **enableProposedApi**: Enable experimental APIs (for development only)
+- **documentAccess**: How the plugin accesses Figma files (`"dynamic-page"` recommended)
+- **editorType**: Supported Figma editors (`figma`, `figjam`, `dev`, `slides`)
+- **networkAccess**: List of allowed domains for network access
+    - `allowedDomains`: Domains allowed in production (e.g., `["none"]` blocks all, `["*"]` allows all, or specify domains)
+    - `devAllowedDomains`: Domains allowed during development (e.g., local server)
+
+## 📣 Contributing & Questions
+
+Bug reports, feature requests, and questions are welcome via Issues or PRs!
