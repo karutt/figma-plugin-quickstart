@@ -67,7 +67,7 @@ To make working with Chakra UI and ESLint more comfortable, add the following to
     { "rule": "chakra-ui/props-order", "severity": "off" }
 ],
 "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
+    "source.fixAll.eslint": "explicit"
 },
 "eslint.useFlatConfig": true,
 ```

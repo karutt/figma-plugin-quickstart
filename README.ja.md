@@ -67,7 +67,7 @@ Chakra UIのprops自動整列や保存時の自動修正を快適にするため
     { "rule": "chakra-ui/props-order", "severity": "off" }
 ],
 "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
+    "source.fixAll.eslint": "explicit"
 },
 "eslint.useFlatConfig": true,
 ```
